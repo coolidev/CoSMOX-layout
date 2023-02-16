@@ -1,10 +1,12 @@
-import './App.css';
+import { createTheme, ThemeProvider } from '@material-ui/core';
+import Home from './pages/home';
 
 function App() {
+  const theme = createTheme({})
   return (
-    <div className="App">
-      App
-    </div>
+    <ThemeProvider theme={theme}>
+      <Home />
+    </ThemeProvider>
   );
 }
 
