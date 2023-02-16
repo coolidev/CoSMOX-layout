@@ -6,6 +6,10 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'black',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
     color: 'white',
     width: '5vw',
     height: '90vh'
