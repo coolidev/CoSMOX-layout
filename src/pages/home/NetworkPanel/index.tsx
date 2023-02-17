@@ -23,7 +23,6 @@ const NetworkPanel: FC = () => {
   const classes = useStyles();
 
   const handleMin = () => {
-    console.log(network_panel, NORMAL)
     if (network_panel === MAXIMUM) {
       handlePanel(NETWORK_PANEL, NORMAL);
       handlePanel(VISUALIZER_PANEL, NORMAL);
