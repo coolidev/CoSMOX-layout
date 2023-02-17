@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   togglePanel: {
     position: 'relative',
     textAlign: 'left',
-    height: '6%',
+    height: '0',
     '& > button': {
       color: 'white'
     }
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: "center",
     justifyContent: "center",
-    height: '94%'
+    height: '100%'
   }
 }))
 
