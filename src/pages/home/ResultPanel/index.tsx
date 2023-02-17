@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     overflow: "hidden",
     color: 'white',
-    width: '30vw',
-    height: '90vh'
+    width: '30%',
+    height: '100%'
   }
 }))
 
