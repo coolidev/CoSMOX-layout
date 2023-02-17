@@ -1,7 +1,12 @@
 import { FC, useContext } from "react";
 import {
   makeStyles,
+  IconButton
 } from "@material-ui/core";
+import {
+  KeyboardArrowDown,
+  KeyboardArrowUp
+} from '@material-ui/icons';
 import { PanelContext } from "../../../providers/panel";
 import { MAXIMUM, MINIMUM, NETWORK_PANEL, NORMAL, VISUALIZER_PANEL } from "../../../utils";
 
@@ -16,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
   togglePanel: {
     position: 'relative',
     textAlign: 'right',
-    height: '6%'
+    height: '6%',
+    '& > button': {
+      color: 'white'
+    }
   },
   panel: {
     display: 'flex',
@@ -65,12 +73,12 @@ const NetworkPanel: FC = () => {
       }}
     >
       <div className={classes.togglePanel}>
-        <button onClick={handleMin}>
-          minus
-        </button>
-        <button onClick={handlePlus}>
-          plus
-        </button>
+        <IconButton onClick={handleMin} size="small">
+          {network_panel !== MINIMUM ? (<KeyboardArrowDown />) : (<></>)}
+        </IconButton>
+        <IconButton onClick={handlePlus} size="small">
+          {network_panel !== MAXIMUM ? (<KeyboardArrowUp />) : (<></>)}
+        </IconButton>
       </div>
       <div className={classes.panel}>
         NetworkPanel

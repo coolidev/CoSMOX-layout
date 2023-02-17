@@ -1,7 +1,12 @@
 import { FC, useContext } from "react";
 import {
   makeStyles,
+  IconButton
 } from "@material-ui/core";
+import {
+  ChevronLeft,
+  ChevronRight
+} from '@material-ui/icons';
 import { PanelContext } from "../../../providers/panel";
 import { MINIMUM, NORMAL, RESULT_PANEL } from "../../../utils";
 
@@ -16,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
   togglePanel: {
     position: 'relative',
     textAlign: 'left',
-    height: '6%'
+    height: '6%',
+    '& > button': {
+      color: 'white'
+    }
   },
   panel: {
     display: 'flex',
@@ -46,9 +54,9 @@ const ResultPanel: FC = () => {
       }}
     >
       <div className={classes.togglePanel}>
-        <button onClick={handlePanelSize}>
-          toggle
-        </button>
+        <IconButton onClick={handlePanelSize} size="small">
+          {result_panel === MINIMUM ? (<ChevronLeft />) : (<ChevronRight />)}
+        </IconButton>
       </div>
       <div className={classes.panel}>
         ResultPanel
