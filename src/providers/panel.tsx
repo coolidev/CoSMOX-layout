@@ -1,5 +1,6 @@
 // Libraries
 import React, { useState } from 'react';
+import { INPUT_PANEL, MAXIMUM, MINIMUM, NETWORK_PANEL, NORMAL, RESULT_PANEL, VISUALIZER_PANEL } from '../utils';
 
 // minimum, normal, maximum
 
@@ -12,15 +13,6 @@ const initial = {
 }
 
 export const PanelContext = React.createContext(initial);
-
-const INPUT_PANEL = 'input';
-const VISUALIZER_PANEL = 'visualizer';
-const NETWORK_PANEL = 'network';
-const RESULT_PANEL = 'result';
-
-const MINIMUM = 'minimum';
-const NORMAL = 'normal';
-const MAXIMUM = 'maximum';
 
 const PanelContextProvider = ({ children }: any) => {
   const [inputPanel, setInputPanel] = useState('');

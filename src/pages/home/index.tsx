@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import {
   Grid,
   makeStyles
@@ -12,6 +12,8 @@ import ResultPanel from "./ResultPanel";
 import NetworkPanel from "./NetworkPanel";
 import { ZoomContext } from "../../providers/zoom";
 import useWindowSize from "../../hooks/useSize";
+import { PanelContext } from "../../providers/panel";
+import { MINIMUM } from "../../utils";
 
 const useStyles = makeStyles<Theme>((theme) => ({
   root: {
@@ -29,6 +31,10 @@ const useStyles = makeStyles<Theme>((theme) => ({
 
 const Home: FC = () => {
   const { zoom, selectZoom } = useContext(ZoomContext)
+  const { input_panel, result_panel } = useContext(PanelContext)
+
+  const [mainPanelWidth, setMainPanelWidth] = useState(35)
+
   const classes = useStyles();
 
   const size = useWindowSize();
@@ -36,6 +42,17 @@ const Home: FC = () => {
   useEffect(() => {
     selectZoom()
   }, [size, selectZoom]);
+
+  useEffect(() => {
+    let origin = 35;
+    if (input_panel === MINIMUM) {
+      origin = origin + 25;
+    }
+    if (result_panel === MINIMUM) {
+      origin = origin + 25;
+    }
+    setMainPanelWidth(origin)
+  }, [input_panel, result_panel])
 
   return (
     <>
@@ -50,7 +67,12 @@ const Home: FC = () => {
         <Grid container className={classes.panel}>
           <SideMenu />
           <InputPanel />
-          <Grid className={classes.mainPanel}>
+          <Grid
+            className={classes.mainPanel}
+            style={{
+              width: `${mainPanelWidth}%`
+            }}
+          >
             <VisualizerPanel />
             <NetworkPanel />
           </Grid>
