@@ -8,13 +8,21 @@ import { MAXIMUM, MINIMUM, NETWORK_PANEL, NORMAL, VISUALIZER_PANEL } from "../..
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'blue',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     overflow: "hidden",
     color: 'white',
     width: '100%',
     height: '44%'
+  },
+  togglePanel: {
+    position: 'relative',
+    textAlign: 'right',
+    height: '6%'
+  },
+  panel: {
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center",
+    height: '94%'
   }
 }))
 
@@ -56,13 +64,17 @@ const NetworkPanel: FC = () => {
           )}`
       }}
     >
-      NetworkPanel
-      <button onClick={handleMin}>
-        minus
-      </button>
-      <button onClick={handlePlus}>
-        plus
-      </button>
+      <div className={classes.togglePanel}>
+        <button onClick={handleMin}>
+          minus
+        </button>
+        <button onClick={handlePlus}>
+          plus
+        </button>
+      </div>
+      <div className={classes.panel}>
+        NetworkPanel
+      </div>
     </div>
   )
 };

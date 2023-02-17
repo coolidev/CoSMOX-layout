@@ -8,13 +8,21 @@ import { MINIMUM, NORMAL, RESULT_PANEL } from "../../../utils";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'red',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     overflow: "hidden",
     color: 'white',
     width: '30%',
     height: '100%'
+  },
+  togglePanel: {
+    position: 'relative',
+    textAlign: 'left',
+    height: '6%'
+  },
+  panel: {
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center",
+    height: '94%'
   }
 }))
 
@@ -37,10 +45,14 @@ const ResultPanel: FC = () => {
         width: `${result_panel === MINIMUM ? '5%' : '30%'}`
       }}
     >
-      ResultPanel
-      <button onClick={handlePanelSize}>
-        toggle
-      </button>
+      <div className={classes.togglePanel}>
+        <button onClick={handlePanelSize}>
+          toggle
+        </button>
+      </div>
+      <div className={classes.panel}>
+        ResultPanel
+      </div>
     </div>
   )
 };

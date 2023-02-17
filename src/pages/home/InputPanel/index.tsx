@@ -8,13 +8,21 @@ import { INPUT_PANEL, MINIMUM, NORMAL } from "../../../utils";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'green',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     overflow: "hidden",
     color: 'white',
     width: '30%',
     height: '100%'
+  },
+  togglePanel: {
+    position: 'relative',
+    textAlign: 'right',
+    height: '6%'
+  },
+  panel: {
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center",
+    height: '94%'
   }
 }))
 
@@ -37,10 +45,14 @@ const InputPanel: FC = () => {
         width: `${input_panel === MINIMUM ? '5%' : '30%'}`
       }}
     >
-      InputPanel
-      <button onClick={handlePanelSize}>
-        toggle
-      </button>
+      <div className={classes.togglePanel}>
+        <button onClick={handlePanelSize}>
+          toggle
+        </button>
+      </div>
+      <div className={classes.panel}>
+        InputPanel
+      </div>
     </div>
   )
 };
