@@ -3,6 +3,7 @@ import {
   Grid,
   makeStyles
 } from "@material-ui/core";
+import { Theme } from "@material-ui/core/styles";
 import Header from "./Header";
 import InputPanel from "./InputPanel";
 import VisualizerPanel from "./VisualizerPanel";
@@ -12,7 +13,7 @@ import NetworkPanel from "./NetworkPanel";
 import { ZoomContext } from "../../providers/zoom";
 import useWindowSize from "../../hooks/useSize";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   root: {
     textAlign: "center",
     width: window.screen.width,
@@ -34,11 +35,17 @@ const Home: FC = () => {
 
   useEffect(() => {
     selectZoom()
-  }, [size]);
+  }, [size, selectZoom]);
 
   return (
     <>
-      <Grid className={classes.root} style={{ width: window.screen.width / zoom, height: window.screen.height / zoom }}>
+      <Grid
+        className={classes.root}
+        style={{
+          width: window.screen.width / zoom, height:
+          window.screen.height / zoom
+        }}
+      >
         <Header />
         <Grid container className={classes.panel}>
           <SideMenu />
