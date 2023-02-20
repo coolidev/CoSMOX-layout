@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy Files to container
 COPY . .
 # Build Front-end
-WORKDIR ./
+
 RUN npm install
 
 CMD npm run start
