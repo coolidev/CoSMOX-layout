@@ -11,15 +11,13 @@ import SideMenu from "./SideMenu";
 import ResultPanel from "./ResultPanel";
 import NetworkPanel from "./NetworkPanel";
 import { ZoomContext } from "../../providers/zoom";
-import useWindowSize from "../../hooks/useSize";
+import useWindowSize, { useFullScreen } from "../../hooks/useSize";
 import { PanelContext } from "../../providers/panel";
 import { MINIMUM } from "../../utils";
 
 const useStyles = makeStyles<Theme>((theme) => ({
   root: {
     textAlign: "center",
-    width: window.screen.width,
-    height: window.screen.height
   },
   panel: {
     height: "90%"
@@ -36,13 +34,14 @@ const Home: FC = () => {
   const [mainPanelWidth, setMainPanelWidth] = useState(35);
   const [browser, setBrowser] = useState('');
   const [fullSize, setFullSize] = useState({
-    width: window.screen.width,
-    height: window.screen.height
+    width: `${window.screen.width}px`,
+    height: `100vh`
   });
 
   const classes = useStyles();
 
   const size = useWindowSize();
+  const isFull = useFullScreen();
 
   const sUsrAg = navigator.userAgent;
 
@@ -91,26 +90,40 @@ const Home: FC = () => {
   }, [input_panel, result_panel])
 
   useEffect(() => {
-    if (browser === 'Google Chrome/Chromium') {
-      setFullSize({
-        width: window.screen.width / zoom,
-        height: window.screen.height / zoom
-      })
+    if (isFull) {
+      if (browser === 'Google Chrome/Chromium') {
+        setFullSize({
+          width: `${window.screen.availWidth / zoom}px`,
+          height: '100vh'
+        })
+      } else {
+        setFullSize({
+          width: `${window.screen.availWidth}px`,
+          height: '100vh'
+        })
+      }
     } else {
-      setFullSize({
-        width: window.screen.width,
-        height: window.screen.height
-      })
+      if (browser === 'Google Chrome/Chromium') {
+        setFullSize({
+          width: `${window.screen.width / zoom}px`,
+          height: `${window.screen.height / zoom}px`
+        })
+      } else {
+        setFullSize({
+          width: `${window.screen.width}px`,
+          height: `${window.screen.height}px`
+        })
+      }
     }
-  }, [size, zoom, browser])
+  }, [size, zoom, browser, isFull])
 
   return (
     <>
       <Grid
         className={classes.root}
         style={{
-          width: `${fullSize.width}px`,
-          height: `${fullSize.height}px`
+          width: `${fullSize.width}`,
+          height: `${fullSize.height}`
         }}
       >
         <Header />
