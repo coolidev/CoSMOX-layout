@@ -24,7 +24,7 @@ export const PANEL_RATIO = {
     },
     [INPUT_PANEL]: {
       width: 25,
-      minimized_width: 5,
+      minimized_width: 0,
     },
     [MAIN_PANEL]: { // main panel includes visualizer and network panels
       width: 40,
@@ -43,9 +43,62 @@ export const PANEL_RATIO = {
       },
     [RESULT_PANEL]: {
       width: 25,
-      minimized_width: 5,
+      minimized_width: 0,
     },
     [TAB_MENU]: {
       width: 5,
     }
 }
+
+export const ratio_list = [
+  {
+    ratio: '4:3',
+    value: 4 / 3,
+    supported: true,
+  },
+  {
+    ratio: '5:4',
+    value: 1.25,
+    supported: false,
+  },
+  {
+    ratio: '3:2',
+    value: 1.5,
+    supported: false,
+  },
+  {
+    ratio: '16:10',
+    value: 1.6,
+    supported: true,
+  },
+  {
+    ratio: '16:9',
+    value: 16 / 9,
+    supported: true,
+  },
+  {
+    ratio: '19:9',
+    value: 19 / 9,
+    supported: false,
+  },
+  {
+    ratio: '21:9',
+    value: 21 / 9,
+    supported: false,
+  },
+  {
+    ratio: '32:9',
+    value: 32 / 9,
+    supported: false,
+  },
+  {
+    ratio: '1:1',
+    value: 1,
+    supported: false,
+  },
+  {
+    ratio: '4:1',
+    value: 4,
+    supported: false,
+  },
+]

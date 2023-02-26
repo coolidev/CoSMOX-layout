@@ -6,7 +6,7 @@ import { PANEL_RATIO, TAB_MENU } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: 'black',
+    backgroundColor: 'purple',
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
