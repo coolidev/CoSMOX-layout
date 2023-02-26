@@ -8,14 +8,14 @@ import {
   ChevronRight
 } from '@material-ui/icons';
 import { PanelContext } from "../../../providers/panel";
-import { INPUT_PANEL, MINIMUM, NORMAL } from "../../../utils";
+import { INPUT_PANEL, MINIMUM, NORMAL, PANEL_RATIO } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'green',
     overflow: "hidden",
     color: 'white',
-    width: '30%',
+    width: `${PANEL_RATIO[INPUT_PANEL].width}%`,
     height: '100%'
   },
   togglePanel: {
@@ -50,7 +50,7 @@ const InputPanel: FC = () => {
     <div
       className={classes.root}
       style={{
-        width: `${input_panel === MINIMUM ? '5%' : '30%'}`
+        width: `${input_panel === MINIMUM ? PANEL_RATIO[INPUT_PANEL].minimized_width : PANEL_RATIO[INPUT_PANEL].width}%`
       }}
     >
       <div className={classes.togglePanel}>

@@ -8,7 +8,7 @@ import {
   ChevronRight
 } from '@material-ui/icons';
 import { PanelContext } from "../../../providers/panel";
-import { MINIMUM, NORMAL, RESULT_PANEL } from "../../../utils";
+import { MINIMUM, NORMAL, PANEL_RATIO, RESULT_PANEL } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +50,7 @@ const ResultPanel: FC = () => {
     <div
       className={classes.root}
       style={{
-        width: `${result_panel === MINIMUM ? '5%' : '30%'}`
+        width: `${result_panel === MINIMUM ? PANEL_RATIO[RESULT_PANEL].minimized_width : PANEL_RATIO[RESULT_PANEL].width}%`
       }}
     >
       <div className={classes.togglePanel}>

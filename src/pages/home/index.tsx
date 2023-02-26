@@ -13,17 +13,18 @@ import NetworkPanel from "./NetworkPanel";
 import { ZoomContext } from "../../providers/zoom";
 import useWindowSize, { useFullScreen } from "../../hooks/useSize";
 import { PanelContext } from "../../providers/panel";
-import { MINIMUM } from "../../utils";
+import { HEADER, INPUT_PANEL, MAIN_PANEL, MINIMUM, PANEL_RATIO, RESULT_PANEL, SIDE_MENU, TAB_MENU } from "../../utils";
+import TabMenu from "./TabMenu";
 
 const useStyles = makeStyles<Theme>((theme) => ({
   root: {
     textAlign: "center",
   },
   panel: {
-    height: "90%"
+    height: `${100 - PANEL_RATIO[HEADER].height}%`
   },
   mainPanel: {
-    width: "35%"
+    width: `${PANEL_RATIO[MAIN_PANEL].width}%`
   }
 }))
 
@@ -79,14 +80,16 @@ const Home: FC = () => {
   }, [size, selectZoom]);
 
   useEffect(() => {
-    let origin = 35;
-    if (input_panel === MINIMUM) {
-      origin = origin + 25;
-    }
-    if (result_panel === MINIMUM) {
-      origin = origin + 25;
-    }
-    setMainPanelWidth(origin)
+    const newWidth = 100
+            - (PANEL_RATIO[SIDE_MENU].width
+              + (input_panel !== MINIMUM
+                ? PANEL_RATIO[INPUT_PANEL].width
+                : PANEL_RATIO[INPUT_PANEL].minimized_width)
+              + (result_panel !== MINIMUM
+                ? PANEL_RATIO[RESULT_PANEL].width
+                : PANEL_RATIO[RESULT_PANEL].minimized_width)
+              + PANEL_RATIO[TAB_MENU].width)
+    setMainPanelWidth(newWidth)
   }, [input_panel, result_panel])
 
   useEffect(() => {
@@ -140,6 +143,7 @@ const Home: FC = () => {
             <NetworkPanel />
           </Grid>
           <ResultPanel />
+          <TabMenu />
         </Grid>
       </Grid>
     </>

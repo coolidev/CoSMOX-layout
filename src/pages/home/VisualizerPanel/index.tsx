@@ -3,7 +3,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { PanelContext } from "../../../providers/panel";
-import { MAXIMUM, MINIMUM } from "../../../utils";
+import { MAXIMUM, MINIMUM, PANEL_RATIO, VISUALIZER_PANEL } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     overflow: "hidden",
     width: '100%',
-    height: '56%'
+    height: `${(100) * PANEL_RATIO[VISUALIZER_PANEL].height}%`
   }
 }))
 
@@ -25,10 +25,10 @@ const VisualizerPanel: FC = () => {
       className={classes.root}
       style={{
         height: `${visualizer_panel === MINIMUM ?
-          '6%' :
+          `${(100) * PANEL_RATIO[VISUALIZER_PANEL].minimized_height}%` :
           (visualizer_panel === MAXIMUM ?
-            '94%' :
-            '56%'
+            `${(100) * PANEL_RATIO[VISUALIZER_PANEL].maximuzed_height}%` :
+            `${(100) * PANEL_RATIO[VISUALIZER_PANEL].height}%`
           )}`
       }}
     >

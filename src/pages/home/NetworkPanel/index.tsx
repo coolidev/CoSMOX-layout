@@ -8,7 +8,7 @@ import {
   KeyboardArrowUp
 } from '@material-ui/icons';
 import { PanelContext } from "../../../providers/panel";
-import { MAXIMUM, MINIMUM, NETWORK_PANEL, NORMAL, VISUALIZER_PANEL } from "../../../utils";
+import { MAXIMUM, MINIMUM, NETWORK_PANEL, NORMAL, PANEL_RATIO, VISUALIZER_PANEL } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     color: 'white',
     width: '100%',
-    height: '44%'
+    height: `${(100) * PANEL_RATIO[NETWORK_PANEL].height}%`
   },
   togglePanel: {
     position: 'relative',
@@ -65,10 +65,10 @@ const NetworkPanel: FC = () => {
       className={classes.root}
       style={{
         height: `${network_panel === MINIMUM ?
-          '6%' :
+          `${(100) * PANEL_RATIO[NETWORK_PANEL].minimized_height}%` :
           (network_panel === MAXIMUM ?
-            '94%' :
-            '44%'
+            `${(100) * PANEL_RATIO[NETWORK_PANEL].maximuzed_height}%` :
+            `${(100) * PANEL_RATIO[NETWORK_PANEL].height}%`
           )}`
       }}
     >

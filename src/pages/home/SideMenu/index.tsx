@@ -2,6 +2,7 @@ import { FC } from "react";
 import {
   makeStyles,
 } from "@material-ui/core";
+import { PANEL_RATIO, SIDE_MENU } from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     overflow: "hidden",
     color: 'white',
-    width: '5%',
+    width: `${PANEL_RATIO[SIDE_MENU].width}%`,
     height: '100%'
   }
 }))
