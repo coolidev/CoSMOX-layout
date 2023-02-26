@@ -69,7 +69,7 @@ export const ratio_list = [
   {
     ratio: '16:10',
     value: 1.6,
-    supported: true,
+    supported: false,
   },
   {
     ratio: '16:9',
