@@ -29,7 +29,8 @@ const Home: FC = () => {
 
   const [mainPanelWidth, setMainPanelWidth] = useState(40);
 
-  const [currentInputTab, setCurrentInputTab] = useState('');
+  const [currentInputTab, setCurrentInputTab] = useState('1');
+  const [currentResultTab, setCurrentResultTab] = useState('1');
 
   const classes = useStyles();
 
@@ -62,8 +63,8 @@ const Home: FC = () => {
             <VisualizerPanel />
             <NetworkPanel />
           </Grid>
-          <ResultPanel />
-          <TabMenu />
+          <ResultPanel currentTab={currentResultTab} />
+          <TabMenu currentTab={currentResultTab} handleCurrentTab={setCurrentResultTab} />
         </Grid>
       </HomeLayout>
     </>
