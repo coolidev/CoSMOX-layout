@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     marginTop: '0.5rem',
     marginBottom: '0.5rem'
+  },
+  active_btn: {
+    backgroundColor: 'orange'
   }
 }))
 
@@ -42,11 +45,11 @@ const TabMenu = ({ currentTab, children, handleCurrentTab }: TabMenuProps) => {
   return (
     <div className={classes.root}>
       <div className={classes.actions}>
-        <Button className={classes.side_menu_btn} onClick={() => {handleCurrentTab(currentTab === '1' ? '' : '1')}}>1</Button>
+        <Button className={`${classes.side_menu_btn} ${currentTab === '1' ? classes.active_btn : ''}`} onClick={() => {handleCurrentTab(currentTab === '1' ? '' : '1')}}>1</Button>
         <Divider light={true} variant="middle" style={{ backgroundColor: 'white' }} />
-        <Button className={classes.side_menu_btn} onClick={() => {handleCurrentTab(currentTab === '2' ? '' : '2')}}>2</Button>
+        <Button className={`${classes.side_menu_btn} ${currentTab === '2' ? classes.active_btn : ''}`} onClick={() => {handleCurrentTab(currentTab === '2' ? '' : '2')}}>2</Button>
         <Divider light={true} variant="middle" style={{ backgroundColor: 'white' }} />
-        <Button className={classes.side_menu_btn} onClick={() => {handleCurrentTab(currentTab === '3' ? '' : '3')}}>3</Button>
+        <Button className={`${classes.side_menu_btn} ${currentTab === '3' ? classes.active_btn : ''}`} onClick={() => {handleCurrentTab(currentTab === '3' ? '' : '3')}}>3</Button>
       </div>
     </div>
   )
