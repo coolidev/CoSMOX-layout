@@ -27,7 +27,9 @@ const useStyles = makeStyles<Theme>((theme) => ({
 const Home: FC = () => {
   const { input_panel, result_panel } = useContext(PanelContext)
 
-  const [mainPanelWidth, setMainPanelWidth] = useState(35);
+  const [mainPanelWidth, setMainPanelWidth] = useState(40);
+
+  const [currentInputTab, setCurrentInputTab] = useState('');
 
   const classes = useStyles();
 
@@ -49,8 +51,8 @@ const Home: FC = () => {
       <HomeLayout>
         <Header />
         <Grid container className={classes.panel}>
-          <SideMenu />
-          <InputPanel />
+          <SideMenu currentTab={currentInputTab} handleCurrentTab={setCurrentInputTab} />
+          <InputPanel currentTab={currentInputTab} />
           <Grid
             className={classes.mainPanel}
             style={{

@@ -1,12 +1,7 @@
-import { FC, useContext } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import {
   makeStyles,
-  IconButton,
 } from "@material-ui/core";
-import {
-  ChevronLeft,
-  ChevronRight
-} from '@material-ui/icons';
 import { PanelContext } from "../../../providers/panel";
 import { INPUT_PANEL, MINIMUM, NORMAL, PANEL_RATIO } from "../../../utils";
 
@@ -34,17 +29,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const InputPanel: FC = () => {
-  const { input_panel, handlePanel } = useContext(PanelContext)
+interface InputPanelProps {
+  currentTab: string;
+  children?: ReactNode;
+}
+
+const InputPanel = ({ currentTab, children }: InputPanelProps) => {
+  const { input_panel, handlePanel } = useContext(PanelContext);
   const classes = useStyles();
 
-  const handlePanelSize = () => {
-    if (input_panel === MINIMUM) {
+  useEffect(() => {
+    if (currentTab !== '') {
       handlePanel(INPUT_PANEL, NORMAL);
     } else {
-      handlePanel(INPUT_PANEL, MINIMUM)
+      handlePanel(INPUT_PANEL, MINIMUM);
     }
-  }
+  }, [currentTab, handlePanel])
 
   return (
     <div
@@ -53,13 +53,8 @@ const InputPanel: FC = () => {
         width: `${input_panel === MINIMUM ? PANEL_RATIO[INPUT_PANEL].minimized_width : PANEL_RATIO[INPUT_PANEL].width}%`
       }}
     >
-      <div className={classes.togglePanel}>
-        <IconButton onClick={handlePanelSize} size="small">
-          {input_panel === MINIMUM ? (<ChevronRight />) : (<ChevronLeft />)}
-        </IconButton>
-      </div>
       <div className={classes.panel}>
-        InputPanel
+        InputPanel {currentTab}
       </div>
     </div>
   )
